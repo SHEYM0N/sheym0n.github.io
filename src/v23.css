@@ -1,0 +1,101 @@
+/* =====================================================================
+   SHEYMON v23
+   · tab bar = clean capsule (no stray corner lines)
+   · floating programming-language bubbles replace the old balls
+   · light neon accents · hero without the project box
+   ===================================================================== */
+
+/* ---------- tab bar: one clean capsule ---------- */
+.tabbar{border-radius:999px;corner-shape:round;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.2),inset 0 1.5px 0 rgba(255,255,255,.34),inset 0 -10px 18px -12px rgba(255,120,175,.28),var(--drop)}
+:root:not([data-theme="dark"]) .tabbar{box-shadow:inset 0 0 0 1px rgba(255,255,255,.75),inset 0 1.5px 0 rgba(255,255,255,.95),inset 0 -10px 18px -12px rgba(255,120,175,.3),var(--drop)}
+.tabbar::before{display:none!important}
+.tabbar::after,.lite .tabbar::after{border-radius:999px;corner-shape:round;
+  background:
+    linear-gradient(90deg,transparent 14%,rgba(255,255,255,.7) 32%,rgba(255,255,255,.28) 62%,transparent 86%) 0 1.5px/100% 1.5px no-repeat,
+    radial-gradient(70% 90% at 50% -20%,rgba(255,255,255,.22),transparent 62%),
+    radial-gradient(70% 100% at 50% 150%,rgba(255,110,170,.26),transparent 70%)}
+.tab-pill,.tabbar .tab{border-radius:999px}
+
+/* ---------- hero: centred text, no project box ---------- */
+.hero{grid-template-columns:1fr;justify-items:center;text-align:center}
+.hero-copy{justify-items:center;max-width:780px}
+.hero-actions,.hero-extra{justify-content:center;justify-items:center}
+.hero .lead{margin-inline:auto}
+
+/* ---------- floating programming-language bubbles ---------- */
+.lg{position:absolute;width:var(--s);height:var(--s);pointer-events:none;opacity:.88;
+  animation:lgX var(--tx,22s) ease-in-out var(--dx,0s) infinite alternate;will-change:transform}
+.lg-in{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;direction:ltr;
+  background:
+    radial-gradient(circle at 30% 24%,rgba(255,255,255,.6) 0 3%,rgba(255,255,255,.14) 13%,transparent 32%),
+    radial-gradient(circle at 50% 55%,color-mix(in srgb,var(--c) 20%,transparent),color-mix(in srgb,var(--c) 7%,transparent) 68%,transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 50%,transparent),inset 0 0 calc(var(--s)*.22) color-mix(in srgb,var(--c) 22%,transparent),0 0 calc(var(--s)*.26) -4px color-mix(in srgb,var(--c) 60%,transparent),0 24px 40px -22px rgba(0,0,0,.45);
+  animation:lgY var(--ty,9s) ease-in-out var(--dy,0s) infinite alternate;will-change:transform}
+.lg b{font:700 calc(var(--s)*.34)/1 ui-monospace,"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;letter-spacing:-.02em;color:var(--c);text-shadow:0 0 calc(var(--s)*.12) color-mix(in srgb,var(--c) 75%,transparent)}
+:root:not([data-theme="dark"]) .lg{opacity:.8}
+:root:not([data-theme="dark"]) .lg b{color:color-mix(in srgb,var(--c) 62%,#2A1038);text-shadow:0 0 calc(var(--s)*.1) color-mix(in srgb,var(--c) 35%,transparent)}
+@keyframes lgX{from{transform:translate3d(-2.4vw,0,0)}to{transform:translate3d(2.6vw,0,0)}}
+@keyframes lgY{from{transform:translate3d(0,16px,0) rotate(-7deg) scale(.97)}to{transform:translate3d(0,-26px,0) rotate(8deg) scale(1.04)}}
+.l0{left:6%;top:14%;--s:92px;--tx:24s;--ty:7s;--dx:5s;--dy:0s}
+.l1{right:8%;top:10%;--s:70px;--tx:28s;--ty:10s;--dx:-6s;--dy:5s}
+.l2{left:44%;top:8%;--s:54px;--tx:22s;--ty:7s;--dx:-3s;--dy:3s}
+.l3{right:3%;top:40%;--s:110px;--tx:31s;--ty:10s;--dx:-9s;--dy:1s}
+.l4{left:12%;top:52%;--s:64px;--tx:26s;--ty:7s;--dx:-12s;--dy:6s}
+.l5{left:52%;top:66%;--s:84px;--tx:29s;--ty:10s;--dx:-4s;--dy:4s}
+.l6{right:22%;top:72%;--s:58px;--tx:23s;--ty:7s;--dx:-8s;--dy:2s}
+.l7{left:3%;top:80%;--s:76px;--tx:27s;--ty:10s;--dx:-2s;--dy:0s}
+.l8{right:14%;top:62%;--s:46px;--tx:21s;--ty:7s;--dx:-11s;--dy:5s}
+.l9{left:22%;top:73%;--s:50px;--tx:25s;--ty:10s;--dx:-7s;--dy:3s}
+.l10{right:12%;top:87%;--s:52px;--tx:30s;--ty:7s;--dx:-14s;--dy:1s}
+.l11{left:30%;top:84%;--s:60px;--tx:24s;--ty:10s;--dx:-1s;--dy:6s}
+.l12{left:70%;top:54%;--s:44px;--tx:20s;--ty:7s;--dx:-10s;--dy:4s}
+.l13{left:22%;top:6%;--s:48px;--tx:28s;--ty:10s;--dx:-5s;--dy:2s}
+@media (max-width:820px){
+  .l2,.l6,.l9,.l11,.l12,.l13{display:none}
+  .lg{scale:.78}
+}
+@media (prefers-reduced-motion:reduce){.lg,.lg-in{animation:none!important}}
+
+/* ---------- light neon (kept subtle; stronger in the dark theme) ---------- */
+:root{--nA:95,224,211;--nB:181,140,255;--nC:255,138,200}
+:root[data-theme="dark"] .brand-name{text-shadow:0 0 14px rgba(var(--nA),.5)}
+:root[data-theme="dark"] .hero h1{text-shadow:0 0 30px rgba(var(--nA),.2),0 0 60px rgba(var(--nB),.14)}
+:root[data-theme="dark"] .section-head h2{text-shadow:0 0 24px rgba(var(--nB),.28)}
+:root[data-theme="dark"] .tag-accent,:root[data-theme="dark"] .pill{text-shadow:0 0 10px rgba(var(--nA),.4)}
+.btn-primary{box-shadow:0 14px 28px -12px var(--btn-b),0 0 22px -6px rgba(var(--nA),.55),inset 0 1px 0 rgba(255,255,255,.45)}
+.btn-primary:hover{box-shadow:0 16px 32px -12px var(--btn-b),0 0 30px -4px rgba(var(--nA),.7),inset 0 1px 0 rgba(255,255,255,.5)}
+.pill .dot,.avail .live{box-shadow:0 0 10px 1px rgba(var(--nA),.75)}
+.card:hover{box-shadow:0 0 0 1px rgba(var(--nA),.4),0 0 28px -8px rgba(var(--nA),.5),var(--shadow,0 20px 40px -20px rgba(0,0,0,.4))}
+.nav-link.active,.tab.active{text-shadow:0 0 12px rgba(var(--nA),.55)}
+.tab.active .ic,.nav-link.active .ic{filter:drop-shadow(0 0 5px rgba(var(--nA),.7))}
+.bg-floor{background:repeating-linear-gradient(90deg,rgba(var(--nC),.2) 0 1px,transparent 1px 72px),repeating-linear-gradient(0deg,rgba(var(--nA),.16) 0 1px,transparent 1px 72px)}
+:root:not([data-theme="dark"]) .btn-primary{box-shadow:0 14px 28px -12px var(--btn-b),0 0 18px -8px rgba(var(--nB),.5),inset 0 1px 0 rgba(255,255,255,.45)}
+:root:not([data-theme="dark"]) .card:hover{box-shadow:0 0 0 1px rgba(var(--nB),.3),0 0 24px -10px rgba(var(--nB),.45),var(--shadow,0 20px 40px -20px rgba(0,0,0,.25))}
+
+/* ---------- skills ticker: always moving, never paused by hover/tap ---------- */
+.marquee{pointer-events:none}
+.marquee:hover .mq-track,.marquee:active .mq-track,.marquee .mq-track{animation-play-state:running!important}
+.lite .mq-track{animation:mq 38s linear infinite!important}
+@media (prefers-reduced-motion:reduce){.mq-track{animation:mq 60s linear infinite!important}}
+
+/* ---------- mobile stability: units that don't change when the browser toolbar collapses (no layout jumps while scrolling) ---------- */
+.wg-digits{font-size:clamp(3.6rem,14svh,5.6rem)}
+.lock{min-height:clamp(560px,78svh,660px)}
+
+/* ---------- touch / hover feedback ---------- */
+.btn,.tool,.project,.icon-btn,.tab{-webkit-tap-highlight-color:transparent}
+.btn:active,.icon-btn:active{transform:scale(.96);transition:transform .12s ease}
+.tool{transition:transform .35s var(--spring,cubic-bezier(.2,.9,.3,1.2)),box-shadow .35s ease}
+@media (hover:hover){.tool:hover{transform:translateY(-4px);box-shadow:0 0 0 1px rgba(var(--nA),.35),0 0 24px -8px rgba(var(--nA),.5)}}
+.tab:active{transform:scale(.94);transition:transform .12s ease}
+
+/* ---------- v30 playful touches ---------- */
+.fx-layer{position:fixed;inset:0;pointer-events:none;z-index:70;overflow:hidden}
+.fx-g{position:absolute;font:700 15px/1 ui-monospace,"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;color:var(--c);text-shadow:0 0 10px var(--c),0 0 22px color-mix(in srgb,var(--c) 55%,transparent);will-change:transform,opacity;direction:ltr;white-space:nowrap}
+.fx-spot{position:fixed;left:0;top:0;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;pointer-events:none;z-index:1;opacity:0;transition:opacity .5s ease;will-change:transform;
+  background:radial-gradient(closest-side,rgba(95,224,211,.11),rgba(181,140,255,.07) 46%,transparent 72%)}
+.fx-spot.on{opacity:1}
+:root:not([data-theme="dark"]) .fx-spot{background:radial-gradient(closest-side,rgba(255,150,200,.16),rgba(150,130,255,.09) 46%,transparent 72%)}
+.lg{transition:translate 1.2s cubic-bezier(.2,.8,.2,1)}
+@media (hover:none){.fx-spot{display:none}}
