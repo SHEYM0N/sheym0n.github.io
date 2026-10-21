@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#211a15">
+<title>دانلود ترازینو | Sheymon</title>
+<meta name="description" content="دریافت نسخه اندروید و ویندوز نرم‌افزار حسابداری ترازینو از Sheymon">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --text: #fff8ee;
+  --muted: #d9c8b5;
+  --accent: #d9a574;
+  --line: rgba(255,255,255,.20);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  font-family: Vazirmatn, Tahoma, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 15% 15%, #9b684a 0, transparent 40%),
+    radial-gradient(ellipse at 85% 85%, #5d4637 0, transparent 40%),
+    linear-gradient(135deg, #171411, #33251d 55%, #171411);
+  overflow-x: hidden;
+}
+
+.glow {
+  position: fixed;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: .25;
+  pointer-events: none;
+}
+
+.glow.one {
+  background: #e7a66d;
+  top: -90px;
+  right: -70px;
+}
+
+.glow.two {
+  background: #b8a0e8;
+  bottom: -100px;
+  left: -60px;
+}
+
+.page {
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  animation: appear .7s ease both;
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.logo {
+  width: auto;
+  height: auto;
+  margin: 0 auto 12px;
+  display: grid;
+  place-items: center;
+  font-family: Georgia, serif;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1;
+  color: #f1c69e;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  user-select: none;
+}
+
+.brand-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.brand-sub {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.card {
+  padding: 32px 28px;
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,.15),
+    rgba(255,255,255,.055)
+  );
+  box-shadow:
+    0 24px 70px rgba(0,0,0,.3),
+    inset 0 1px 0 rgba(255,255,255,.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #f3cba5;
+  background: rgba(217,165,116,.12);
+  border: 1px solid rgba(217,165,116,.25);
+  border-radius: 50px;
+  padding: 6px 11px;
+  font-size: 11px;
+  margin-bottom: 17px;
+}
+
+h1 {
+  font-size: 25px;
+  margin: 0 0 10px;
+  line-height: 1.7;
+}
+
+.description {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 2.1;
+  margin: 0 0 26px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid rgba(255,255,255,.19);
+  border-radius: 14px;
+  outline: none;
+  color: white;
+  background: rgba(15,12,10,.25);
+  font: inherit;
+  font-size: 14px;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+input::placeholder {
+  color: #c2b4a6;
+}
+
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(217,165,116,.12);
+}
+
+button {
+  width: 100%;
+  border: 0;
+  border-radius: 14px;
+  margin-top: 15px;
+  padding: 15px;
+  background: linear-gradient(120deg, #e8bd93, #c58c5c);
+  color: #26180f;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .2s, filter .2s;
+}
+
+button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.versions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.version {
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.055);
+  border-radius: 14px;
+  padding: 13px 10px;
+  text-align: center;
+}
+
+.version strong {
+  display: block;
+  font-size: 12px;
+}
+
+.version small {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.secure {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 2;
+  margin-top: 20px;
+}
+
+.secure-icon {
+  color: #b9d8b4;
+}
+
+footer {
+  text-align: center;
+  margin-top: 22px;
+  color: #b8a99b;
+  font-size: 11px;
+}
+
+footer a {
+  color: #edc29a;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 420px) {
+  body {
+    padding: 18px;
+  }
+
+  .card {
+    padding: 26px 20px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+.download-link {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 14px;
+  background: linear-gradient(120deg, #e8bd93, #c58c5c);
+  color: #26180f;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  transition: transform .2s, filter .2s;
+}
+
+.download-link:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+</style>
+</head>
+
+<body>
+<div class="glow one"></div>
+<div class="glow two"></div>
+
+<main class="page">
+  <header class="brand">
+    <div class="logo" aria-label="لوگوی Sheymon">§</div>
+    <div class="brand-name">SHEYMON</div>
+    <div class="brand-sub">نرم‌افزارهای اختصاصی و حرفه‌ای</div>
+  </header>
+
+  <section class="card">
+    <div class="tag">✦ دسترسی ویژه مشتریان</div>
+
+    <h1>دانلود ترازینو</h1>
+
+    <p class="description">
+      برای دریافت نسخه اختصاصی نرم‌افزار حسابداری ترازینو،
+      کد خرید خود را وارد کنید.
+    </p>
+
+    <form id="download-form">
+      <label for="purchase-code">کد خرید شما</label>
+
+      <input
+        id="purchase-code"
+        name="purchase-code"
+        type="text"
+        placeholder="کد خرید را وارد کنید"
+        autocomplete="off"
+        autocapitalize="characters"
+        spellcheck="false"
+        maxlength="128"
+        required
+      >
+
+      <button type="submit">
+        بررسی کد و دریافت دانلود ←
+      </button>
+
+      <p
+        id="form-message"
+        role="status"
+        aria-live="polite"
+        style="display:none;font-size:12px;line-height:2;color:#f3cba5;margin:12px 0 0"
+      ></p>
+
+      <div id="download-area" hidden></div>
+    </form>
+
+    <div class="versions">
+      <div class="version">
+        <strong>نسخه اندروید</strong>
+        <small>فایل APK</small>
+      </div>
+
+      <div class="version">
+        <strong>نسخه ویندوز</strong>
+        <small>نصب روی کامپیوتر</small>
+      </div>
+    </div>
+
+    <div class="secure">
+      <span class="secure-icon" aria-hidden="true">●</span>
+      <div>
+        پس از تأیید کد خرید، لینک دریافت نسخه‌های مجاز نمایش داده می‌شود.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    ساخته‌شده با دقت توسط
+    <a href="https://sheymon.ir">Sheymon</a>
+  </footer>
+</main>
+
+<script>
+const form = document.getElementById("download-form");
+const codeInput = document.getElementById("purchase-code");
+const message = document.getElementById("form-message");
+const downloadArea = document.getElementById("download-area");
+
+const VALID_CODE = "vip-x120";
+const APK_URL = "https://github.com/SHEYMON/sheym0n.github.io/releases/download/V1.0.0/ir.poyashop.app.apk";
+
+function hideDownload() {
+  downloadArea.hidden = true;
+  downloadArea.textContent = "";
+}
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const code = codeInput.value.trim();
+
+  if (!code) {
+    codeInput.focus();
+    return;
+  }
+
+  hideDownload();
+
+  if (code.toLowerCase() === VALID_CODE) {
+    message.textContent = "کد خرید تأیید شد. می‌توانید فایل را دریافت کنید.";
+    message.style.display = "block";
+
+    const link = document.createElement("a");
+    link.className = "download-link";
+    link.href = APK_URL;
+    link.rel = "noopener";
+    link.textContent = "دانلود نسخه اندروید (APK) ↓";
+    downloadArea.appendChild(link);
+    downloadArea.hidden = false;
+  } else {
+    message.textContent = "کد خرید نامعتبر است. لطفاً کد را بررسی کنید و دوباره تلاش کنید.";
+    message.style.display = "block";
+  }
+});
+
+codeInput.addEventListener("input", hideDownload);
+</script>
+</body>
+</html>
