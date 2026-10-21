@@ -1,0 +1,60 @@
+/* =====================================================================
+   SHEYMON v22 — frosted ice glass (header · tab bar · clock widgets)
+   Designed as real glass: tinted body, fine grain, prism rim,
+   curved specular, coloured inner glow. Stays frosted while scrolling
+   (lite mode keeps the bars frosted too).
+   ===================================================================== */
+:root{
+  --gtint:linear-gradient(135deg,rgba(255,176,208,.20),rgba(150,130,255,.12) 52%,rgba(255,206,160,.18));
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.16'/%3E%3C/svg%3E");
+  --mat:rgba(255,246,250,.42);
+  --prism:inset 0 0 0 1px rgba(255,255,255,.7),inset 1.5px 1.5px 0 rgba(120,220,255,.34),inset -1.5px -1.5px 0 rgba(255,130,190,.34),inset 0 16px 24px -14px rgba(255,255,255,.9),inset 0 -20px 30px -16px rgba(255,120,175,.3);
+  --drop:0 1px 2px rgba(150,50,90,.18),0 18px 30px -14px rgba(170,60,110,.45),0 40px 62px -30px rgba(110,50,140,.45);
+}
+:root[data-theme="dark"]{
+  --gtint:linear-gradient(135deg,rgba(255,150,195,.17),rgba(130,110,255,.12) 52%,rgba(255,170,120,.14));
+  --mat:rgba(46,24,56,.34);
+  --prism:inset 0 0 0 1px rgba(255,255,255,.2),inset 1.5px 1.5px 0 rgba(130,230,255,.3),inset -1.5px -1.5px 0 rgba(255,140,200,.32),inset 0 16px 24px -14px rgba(255,255,255,.3),inset 0 -20px 30px -16px rgba(255,100,170,.26);
+  --drop:0 1px 2px rgba(0,0,0,.4),0 18px 30px -14px rgba(0,0,0,.6),0 40px 62px -30px rgba(40,0,70,.7);
+}
+
+/* body of the glass: tint + translucent material, strong frost */
+.site-header,.tabbar,.wg{
+  background:var(--gtint),var(--mat);
+  -webkit-backdrop-filter:blur(16px) saturate(210%) brightness(1.08);backdrop-filter:blur(16px) saturate(210%) brightness(1.08);
+  box-shadow:var(--prism),var(--drop)}
+/* refraction (mouse devices on Chromium): the text underneath bends like seen through ice */
+.refract:not(.lite) .site-header,.refract:not(.lite) .tabbar,.refract:not(.lite) .wg{
+  -webkit-backdrop-filter:blur(8px) saturate(210%) brightness(1.08) url(#ice);backdrop-filter:blur(8px) saturate(210%) brightness(1.08) url(#ice)}
+
+/* optics layer: grain · top specular line · curved corner gloss · chromatic edge tint · coloured inner glow */
+.site-header::after,.tabbar::after,.wg::after{
+  background:
+    radial-gradient(var(--gr,0px) circle at var(--gx,14%) var(--gy,-10%),rgba(255,255,255,.42),transparent 62%),
+    linear-gradient(90deg,transparent 4%,rgba(255,255,255,.95) 20%,rgba(255,255,255,.4) 56%,transparent 96%) 0 1px/100% 1.5px no-repeat,
+    radial-gradient(120% 100% at 0% 0%,rgba(255,255,255,.34),rgba(255,255,255,.07) 40%,transparent 58%),
+    linear-gradient(100deg,rgba(110,220,255,.14),transparent 26%,transparent 72%,rgba(255,140,200,.16)),
+    radial-gradient(80% 100% at 50% 140%,rgba(255,110,170,.34),rgba(150,120,255,.18) 46%,transparent 70%),
+    var(--grain);
+  opacity:1}
+:root:not([data-theme="dark"]) .site-header::after,:root:not([data-theme="dark"]) .tabbar::after,:root:not([data-theme="dark"]) .wg::after{opacity:.95}
+
+/* nav well + active pill read as glass pieces inside the glass */
+.main-nav{background:rgba(255,255,255,.07);box-shadow:inset 0 2px 5px rgba(0,0,0,.2),inset 0 -1px 0 rgba(255,255,255,.14)}
+:root:not([data-theme="dark"]) .main-nav{background:rgba(255,255,255,.35);box-shadow:inset 0 2px 5px rgba(150,60,100,.14),inset 0 -1px 0 rgba(255,255,255,.7)}
+.nav-ind,.tab-pill{background:linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,.16));box-shadow:inset 0 1.5px 0 rgba(255,255,255,.85),inset 0 -2px 4px rgba(255,120,175,.22),0 7px 14px -6px rgba(60,10,60,.5)}
+:root:not([data-theme="dark"]) .nav-ind,:root:not([data-theme="dark"]) .tab-pill{background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,235,244,.7))}
+.icon-btn{background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),inset 0 1.5px 0 rgba(255,255,255,.4)}
+:root:not([data-theme="dark"]) .icon-btn{background:rgba(255,255,255,.5);box-shadow:inset 0 0 0 1px rgba(255,255,255,.8),inset 0 -2px 4px rgba(255,130,180,.16)}
+
+/* ---------- lite mode: bars stay frosted, only the big widgets lose live blur ---------- */
+.lite{--mat:rgba(46,24,56,.58)}
+:root.lite:not([data-theme="dark"]){--mat:rgba(255,244,249,.66)}
+.lite .site-header,.lite .tabbar{-webkit-backdrop-filter:blur(12px) saturate(180%)!important;backdrop-filter:blur(12px) saturate(180%)!important}
+.lite .wg{background:var(--gtint),rgba(40,20,50,.66);-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+:root.lite:not([data-theme="dark"]) .wg{background:var(--gtint),rgba(255,246,250,.8)}
+.lite .site-header::after,.lite .tabbar::after,.lite .wg::after{background:
+    linear-gradient(90deg,transparent 4%,rgba(255,255,255,.95) 20%,rgba(255,255,255,.4) 56%,transparent 96%) 0 1px/100% 1.5px no-repeat,
+    radial-gradient(120% 100% at 0% 0%,rgba(255,255,255,.3),transparent 55%),
+    radial-gradient(80% 100% at 50% 140%,rgba(255,110,170,.3),transparent 68%)}
+.wg:hover{box-shadow:var(--prism),0 4px 6px rgba(0,0,0,.2),0 28px 40px -14px rgba(0,0,0,.5),0 56px 74px -30px rgba(10,0,20,.6)}
